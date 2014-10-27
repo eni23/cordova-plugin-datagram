@@ -11,6 +11,7 @@
 
     <!-- cordova defines the file below with define('<plugin-id>.<name>') -->
     <js-module src="www/datagram.js" name="datagram">
+        <clobbers target="Datagram"/>
     </js-module>
 
     <platform name="android">
