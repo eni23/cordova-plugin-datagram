@@ -1,4 +1,3 @@
-cordova.define("in.girish.datagram.datagram", function(require, exports, module) {// require, exports, module are predefined
 
 var exec = cordova.require('cordova/exec');
 
@@ -73,5 +72,3 @@ module.exports = {
     createSocket: createSocket,
     _onMessage: onMessage
 }
-
-});
