@@ -49,7 +49,7 @@ public class Datagram extends CordovaPlugin {
                     int port = packet.getPort();
 
                     Datagram.this.webView.sendJavascript(
-                        "cordova.require('in.girish.datagram.datagram')._onMessage("
+                        "Datagram._onMessage("
                             + this.m_socketId + ","
                             + "'" + msg + "',"
                             + "'" + address + "',"
