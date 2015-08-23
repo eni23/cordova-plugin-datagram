@@ -69,9 +69,9 @@ public class Datagram extends CordovaPlugin {
 
         if (action.equals("create")) {
             assert socket == null;
-            final boolean isMulticast = data.getBoolean(1);
             try {
-                socket = isMulticast ? new MulticastSocket(null) : new DatagramSocket(null);
+                socket = new DatagramSocket(null);
+								socket.setBroadcast(true);
                 m_sockets.put(id, socket);
                 callbackContext.success();
             } catch (Exception e) {
@@ -90,26 +90,6 @@ public class Datagram extends CordovaPlugin {
                 callbackContext.success();
             } catch (Exception e) {
                 Log.d(TAG, "Bind exception:" + e.toString());
-                callbackContext.error(e.toString());
-            }
-        } else if (action.equals("joinGroup")) {
-            final String address = data.getString(1);
-            MulticastSocket msocket = (MulticastSocket) socket;
-            try {
-                msocket.joinGroup(InetAddress.getByName(address));
-                callbackContext.success();
-            } catch (Exception e) {
-                Log.d(TAG, "joinGroup exception:" + e.toString());
-                callbackContext.error(e.toString());
-            }
-        } else if (action.equals("leaveGroup")) {
-            final String address = data.getString(1);
-            MulticastSocket msocket = (MulticastSocket) socket;
-            try {
-                msocket.leaveGroup(InetAddress.getByName(address));
-                callbackContext.success();
-            } catch (Exception e) {
-                Log.d(TAG, "leaveGroup exception:" + e.toString());
                 callbackContext.error(e.toString());
             }
         } else if (action.equals("send")) {
@@ -144,4 +124,3 @@ public class Datagram extends CordovaPlugin {
         return true;
     }
 }
-
